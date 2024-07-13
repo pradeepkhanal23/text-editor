@@ -1,27 +1,17 @@
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
-const path = require("path");
 const { InjectManifest } = require("workbox-webpack-plugin");
 
 module.exports = () => {
   return {
     mode: "development",
     entry: {
+      index: "./src/js/index.js",
+      install: "./src/js/install.js",
       database: "./src/js/database.js",
       editor: "./src/js/editor.js",
       header: "./src/js/header.js",
-      index: "./src/js/index.js",
-      install: "./src/js/install.js",
-    },
-    devServer: {
-      static: {
-        directory: path.resolve(__dirname, "dist"),
-      },
-      port: 3000,
-      open: true,
-      hot: true,
-      compress: true,
-      historyApiFallback: true,
     },
     output: {
       filename: "[name].bundle.js",
