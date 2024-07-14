@@ -9,4 +9,4 @@ just another text editor
 */                          
 `;
 
-module.exports = { header };
+export { header };

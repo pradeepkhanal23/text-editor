@@ -29,9 +29,12 @@ registerRoute(({ request }) => request.mode === "navigate", pageCache);
 // asset caching
 registerRoute(
   ({ request }) =>
+    // CSS
     request.destination === "style" ||
+    // Javascript
     request.destination === "script" ||
-    request.destination === "image",
+    //worker to inject it into the
+    request.destination === "worker",
   new CacheFirst({
     cacheName: "asset-cache",
     plugins: [

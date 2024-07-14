@@ -7,11 +7,8 @@ module.exports = () => {
   return {
     mode: "development",
     entry: {
-      index: "./src/js/index.js",
+      main: "./src/js/index.js",
       install: "./src/js/install.js",
-      database: "./src/js/database.js",
-      editor: "./src/js/editor.js",
-      header: "./src/js/header.js",
     },
     output: {
       filename: "[name].bundle.js",
@@ -31,10 +28,15 @@ module.exports = () => {
         short_name: "MyPWA",
         description:
           "My awesome Progressive Web App to take notes and write code snippets online or offline!",
+        background_color: "#7eb4e2",
+        theme_color: "#7eb4e2",
+        start_url: "./",
+        publicPath: "./",
         icons: [
           {
-            src: path.resolve("./src/images/logo.png"),
+            src: path.resolve("src/images/logo.png"),
             sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+            destination: path.join("assets", "icons"),
           },
         ],
       }),
@@ -57,6 +59,10 @@ module.exports = () => {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env"],
+              plugins: [
+                "@babel/plugin-proposal-object-rest-spread",
+                "@babel/transform-runtime",
+              ],
             },
           },
         },
